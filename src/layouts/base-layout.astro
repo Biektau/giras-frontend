@@ -1,8 +1,10 @@
 ---
 import { h } from 'preact';
+import { useAuth } from '../hooks/useAuth';
 import '../global-styles.css';
 
 const { children } = Astro.props;
+const isAuthenticated = useAuth();
 ---
 
 <html lang="en">
@@ -12,15 +14,21 @@ const { children } = Astro.props;
   <title>Astro Preact Tailwind</title>
 </head>
 <body class="bg-stone-100 p-2 flex flex-col h-screen">
-  <header class="bg-white text-gray-950 px-3 py-1 rounded-lg">
+  <header class="bg-white text-gray-950 px-3 py-1 rounded-lg shadow-md">
     <nav class="flex justify-between items-center">
       <div>
         <a href="/" class="text-lg font-bold">Гирас</a>
       </div>
       <div>
-        <a href="/login" class="mr-4">Вход</a>
-        <a href="/register" class="mr-4">Регистрация</a>
-        <a href="/profile">Профиль</a>
+        {!isAuthenticated && (
+          <>
+            <a href="/login" class="mr-4">Вход</a>
+            <a href="/register" class="mr-4">Регистрация</a>
+          </>
+        )}
+        {isAuthenticated && (
+          <a href="/profile">Профиль</a>
+        )}
       </div>
     </nav>
   </header>
