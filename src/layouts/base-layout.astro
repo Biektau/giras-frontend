@@ -1,0 +1,31 @@
+---
+import { h } from 'preact';
+import '../global-styles.css';
+
+const { children } = Astro.props;
+---
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Astro Preact Tailwind</title>
+</head>
+<body class="bg-stone-100 p-2 flex flex-col h-screen">
+  <header class="bg-white text-gray-950 px-3 py-1 rounded-lg">
+    <nav class="flex justify-between items-center">
+      <div>
+        <a href="/" class="text-lg font-bold">Гирас</a>
+      </div>
+      <div>
+        <a href="/login" class="mr-4">Вход</a>
+        <a href="/register" class="mr-4">Регистрация</a>
+        <a href="/profile">Профиль</a>
+      </div>
+    </nav>
+  </header>
+  <main class="flex-1">
+    <slot/>
+  </main>
+</body>
+</html>
